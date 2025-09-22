@@ -36,6 +36,16 @@ function DeskGrid({ classInfo, attendanceData, onDeskClick, studentNames }) {
     rightDesks: []
   }
 
+  if (classInfo.name === '2S') {
+    // 2S반: 8명, 8명, 6명 (총 22명)
+    // 1열 (4개 모둠): 1-4, 5-8
+    // 2열 (4개 모둠): 9-12, 13-16
+    // 3열 (3개 모둠): 17-20, 21-22
+    const desksInOrder = Array.from({ length: students }, (_, i) => i + 1)
+    deskLayout.leftDesks = desksInOrder.slice(0, 8) // 1-8
+    deskLayout.middleDesks = desksInOrder.slice(8, 16) // 9-16
+    deskLayout.rightDesks = desksInOrder.slice(16, 22) // 17-22
+  } else {
     // 기본 배치 (좌측 2줄, 우측 2줄)
     for (let row = 0; row < rows; row++) {
       for (let col = 0; col < 2; col++) {
@@ -48,7 +58,7 @@ function DeskGrid({ classInfo, attendanceData, onDeskClick, studentNames }) {
         const deskNumber = row * desksPerRow + col + 1
         if (deskNumber <= students) {
           deskLayout.rightDesks.push(deskNumber)
-        
+        }
       }
     }
   }
@@ -340,4 +350,3 @@ export default function ManagePage() {
     </div>
   )
 }
-
