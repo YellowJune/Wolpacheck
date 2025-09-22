@@ -32,13 +32,11 @@ function AttendanceGrid({ classInfo, attendanceData, studentNames }) {
   }
 
   if (classInfo.name === '2S') {
-    // 2S반: 8명, 8명, 6명 (총 22명)
-    // 1열 (4개 모둠): 1-4, 5-8
-    // 2열 (4개 모둠): 9-12, 13-16
-    // 3열 (3개 모둠): 17-20, 21-22
+    // 2S반은 2R과 동일하나 21, 22번 책상이 우측열로 이동
     const desksInOrder = Array.from({ length: students }, (_, i) => i + 1)
-    deskLayout.leftDesks = desksInOrder.slice(0, 10) // 1-8// 9-16
-    deskLayout.rightDesks = desksInOrder.slice(10, 22) // 17-22
+    deskLayout.leftDesks = desksInOrder.filter(deskNum => deskNum !== 21 && deskNum !== 22)
+    deskLayout.rightDesks = desksInOrder.filter(deskNum => deskNum === 21 || deskNum === 22)
+
   } else {
     // 기본 배치 (좌측 2줄, 우측 2줄)
     for (let row = 0; row < rows; row++) {
@@ -111,15 +109,7 @@ function AttendanceGrid({ classInfo, attendanceData, studentNames }) {
         {/* 통로 - 글씨 제거하고 간격만 유지 */}
         <div className="w-4"></div>
         
-        {/* 2S반 중간 책상들 */}
-        {classInfo.name === '2S' && deskLayout.middleDesks.length > 0 && (
-          <>
-            {renderDeskSection(deskLayout.middleDesks.slice(0, 8))}
-            <div className="w-4"></div>
-            {renderDeskSection(deskLayout.middleDesks.slice(8, 16))}
-            <div className="w-4"></div>
-          </>
-        )}
+
 
         {/* 우측 책상들 */}
         {renderDeskSection(deskLayout.rightDesks)}
