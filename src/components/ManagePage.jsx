@@ -36,10 +36,27 @@ function DeskGrid({ classInfo, attendanceData, onDeskClick, studentNames }) {
   }
 
   if (classInfo.name === '2S') {
-    // 2S반은 2R과 동일하나 21, 22번 책상이 우측열로 이동
-    const desksInOrder = Array.from({ length: students }, (_, i) => i + 1)
-    deskLayout.leftDesks = desksInOrder.filter(deskNum => deskNum !== 21 && deskNum !== 22)
-    deskLayout.rightDesks = desksInOrder.filter(deskNum => deskNum === 21 || deskNum === 22)
+    // 2S반은 2R과 동일하나 21, 22번 책상이 우측열로 이동한것으로 수정.
+    // 2R과 동일한 2열 배치 (desksPerRow = 4)를 기본으로 하되, 21, 22번만 우측열로 이동합니다.
+    deskLayout.leftDesks = [];
+    deskLayout.rightDesks = [];
+    for (let i = 1; i <= students; i++) {
+      if (i === 21 || i === 22) {
+        deskLayout.rightDesks.push(i);
+      } else {
+        // 2R과 동일한 2열 배치 로직 적용
+        if ((i - 1) % desksPerRow < 2) { // 좌측 2칸
+          deskLayout.leftDesks.push(i);
+        } else { // 우측 2칸
+          deskLayout.rightDesks.push(i);
+        }
+      }
+    }
+    deskLayout.leftDesks.sort((a, b) => a - b);
+    deskLayout.rightDesks.sort((a, b) => a - b);
+
+
+
 
   } else {
     // 기본 배치 (좌측 2줄, 우측 2줄)
