@@ -37,9 +37,8 @@ function AttendanceGrid({ classInfo, attendanceData, studentNames }) {
     // 2열 (4개 모둠): 9-12, 13-16
     // 3열 (3개 모둠): 17-20, 21-22
     const desksInOrder = Array.from({ length: students }, (_, i) => i + 1)
-    deskLayout.leftDesks = desksInOrder.slice(0, 8) // 1-8
-    deskLayout.middleDesks = desksInOrder.slice(8, 16) // 9-16
-    deskLayout.rightDesks = desksInOrder.slice(16, 22) // 17-22
+    deskLayout.leftDesks = desksInOrder.slice(0, 10) // 1-8// 9-16
+    deskLayout.rightDesks = desksInOrder.slice(10, 22) // 17-22
   } else {
     // 기본 배치 (좌측 2줄, 우측 2줄)
     for (let row = 0; row < rows; row++) {
