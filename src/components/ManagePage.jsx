@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 
-const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbz-qrTzrIvX1JNvOjOz9hL24M0AaBvViMoC8kYU2CgfX4RgXv7pTu2pOV08EXJgOyMhfg/exec'
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzNBCv5uogsfdwXCS83QhZAQ-ksVfBYpZmq7vq1ncwYCZ_n7s-dBoHaRxzkAxxUFR2dMw/exec'
 import { Button } from '@/components/ui/button.jsx'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card.jsx'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select.jsx'
