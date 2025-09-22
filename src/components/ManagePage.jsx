@@ -32,11 +32,10 @@ function DeskGrid({ classInfo, attendanceData, onDeskClick, studentNames }) {
   // 2S반은 특별한 좌석 배치
   let deskLayout = {
     leftDesks: [],
-    middleDesks: [],
     rightDesks: []
   }
 
-  if (classInfo.name === '2S') {
+  if (classInfo.name === '2Snot') {
     // 2S반: 8명, 8명, 6명 (총 22명)
     // 1열 (4개 모둠): 1-4, 5-8
     // 2열 (4개 모둠): 9-12, 13-16
